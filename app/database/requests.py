@@ -1,5 +1,5 @@
 from app.database.models import async_session
-from app.database.models import User, Category, Item, Object
+from app.database.models import User, Item, Object
 
 from sqlalchemy import select
 from sqlalchemy.orm import joinedload
@@ -21,12 +21,16 @@ async def get_objects():
 
 async def get_item_by_object(object_id):
     async with async_session() as session:
-        return await session.scalars(select(Item).where(Item.object_id == object_id))
+        return await session.scalars(select(Item).where(
+            Item.object_id == object_id)
+        )
 
 
 async def get_item(item_id):
     async with async_session() as session:
         result = await session.execute(
-            select(Item).options(joinedload(Item.category)).where(Item.id == item_id)
+            select(Item).options(joinedload(Item.category)).where(
+                Item.id == item_id
+            )
         )
         return result.scalars().first()

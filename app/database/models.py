@@ -4,7 +4,8 @@ from dotenv import load_dotenv
 
 from sqlalchemy import BigInteger, String, ForeignKey
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
-from sqlalchemy.ext.asyncio import AsyncAttrs, async_sessionmaker, create_async_engine
+from sqlalchemy.ext.asyncio import (AsyncAttrs, async_sessionmaker,
+                                    create_async_engine)
 
 
 load_dotenv()
@@ -40,6 +41,7 @@ class Object(Base):
     name: Mapped[str] = mapped_column(String(25))
     items = relationship("Item", back_populates="object")
 
+
 class Item(Base):
     __tablename__ = 'items'
 
@@ -51,6 +53,7 @@ class Item(Base):
     category = relationship("Category", back_populates="items")
     object_id: Mapped[int] = mapped_column(ForeignKey('objects.id'))
     object = relationship("Object", back_populates="items")
+
 
 async def async_main():
     async with engine.begin() as conn:
