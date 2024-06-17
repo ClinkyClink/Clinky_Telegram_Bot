@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 
 
 from sqlalchemy import BigInteger, String, ForeignKey
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy.ext.asyncio import AsyncAttrs, async_sessionmaker, create_async_engine
 
 
@@ -30,6 +30,7 @@ class Category(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(25))
+    items = relationship("Item", back_populates="category")
 
 
 class Object(Base):
@@ -37,6 +38,7 @@ class Object(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(25))
+    items = relationship("Item", back_populates="object")
 
 class Item(Base):
     __tablename__ = 'items'
@@ -45,9 +47,10 @@ class Item(Base):
     number: Mapped[str] = mapped_column(String(10))
     description: Mapped[str] = mapped_column(String(120))
     amperage: Mapped[int] = mapped_column()
-    category: Mapped[int] = mapped_column(ForeignKey('categories.id'))
-    object: Mapped[int] = mapped_column(ForeignKey('objects.id'))
-
+    category_id: Mapped[int] = mapped_column(ForeignKey('categories.id'))
+    category = relationship("Category", back_populates="items")
+    object_id: Mapped[int] = mapped_column(ForeignKey('objects.id'))
+    object = relationship("Object", back_populates="items")
 
 async def async_main():
     async with engine.begin() as conn:
