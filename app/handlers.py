@@ -1,8 +1,7 @@
 from aiogram import Router, F
 from aiogram.filters import CommandStart
 from aiogram.types import Message, CallbackQuery
-import logging
-logging.basicConfig(level=logging.INFO)
+
 import app.keyboards as kb
 import app.database.requests as rq
 
@@ -34,3 +33,8 @@ async def object(callback: CallbackQuery):
     await callback.answer('Вы выбрали скважину')
     await callback.message.answer(f'{item_data.number}\nСтанция: {item_data.category.name}\nОписание: {item_data.description}\nАмпераж: {item_data.amperage}A',
                                   reply_markup=await kb.items(callback.data.split('_')[1]))
+
+
+@router.callback_query(F.data == 'go_main')
+async def on_main_button(callback_query: CallbackQuery):
+    await callback_query.message.edit_text('Вы вернулись на главную', reply_markup=await kb.objects())

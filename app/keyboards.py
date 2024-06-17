@@ -14,7 +14,6 @@ async def objects():
     keyboard = InlineKeyboardBuilder()
     for object in all_objects:
         keyboard.add(InlineKeyboardButton(text=object.name, callback_data=f'object_{object.id}'))
-    keyboard.add(InlineKeyboardButton(text='На главную', callback_data='to main'))
     return keyboard.adjust(2).as_markup()
 
 
@@ -23,5 +22,5 @@ async def items(object_id):
     keyboard = InlineKeyboardBuilder()
     for item in all_items:
         keyboard.add(InlineKeyboardButton(text=item.number, callback_data=f'item_{item.id}'))
-    keyboard.add(InlineKeyboardButton(text='На главную', callback_data='to main'))
+    keyboard.add(InlineKeyboardButton(text='Назад', callback_data='go_main'))
     return keyboard.adjust(2).as_markup()
