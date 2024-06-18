@@ -6,7 +6,8 @@
 <div align="center">
 	<code><img width="50" src="https://user-images.githubusercontent.com/25181517/183423507-c056a6f9-1ba8-4312-a350-19bcbc5a8697.png" alt="Python" title="Python"/></code>
 	<code><img width="50" src="https://github.com/marwin1991/profile-technology-icons/assets/136815194/82df4543-236b-4e45-9604-5434e3faab17" alt="SQLite" title="SQLite"/></code>
-  <code><img width="50" src="https://avatars.githubusercontent.com/u/33784865?s=200&v=4 " alt="SQLite" title="SQLite"/></code>
+  	<code><img width="50" src="https://avatars.githubusercontent.com/u/33784865?s=200&v=4 " alt="SQLite" title="SQLite"/></code>
+	<code><img width="50" src="https://avatars.githubusercontent.com/u/6043126?s=200&v=4 " alt="SQLite" title="SQLite"/></code>
 </div>
 
 ## Описание
