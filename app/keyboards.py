@@ -4,6 +4,7 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 from app.database.requests import get_objects, get_item_by_object
 
+
 main = ReplyKeyboardMarkup(keyboard=[[KeyboardButton(text='Объекты')]],
                            resize_keyboard=True,
                            input_field_placeholder='Выберите пункт меню')
