@@ -31,6 +31,7 @@ class Category(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(25))
+    # documentation: Mapped[str] = mapped_column(String(255))
     items = relationship("Item", back_populates="category")
 
 
