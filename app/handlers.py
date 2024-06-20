@@ -36,6 +36,7 @@ async def object(callback: CallbackQuery):
     await callback.message.answer(
         f'{item_data.number}\n'
         f'Станция: {item_data.category.name}\n'
+        f'Руководство: {item_data.category.documentation}\n'
         f'Описание: {item_data.description}\n'
         f'Ампераж: {item_data.amperage}A',
         reply_markup=await kb.items(callback.data.split('_')[1])
