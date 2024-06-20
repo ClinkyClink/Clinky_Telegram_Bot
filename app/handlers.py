@@ -43,8 +43,9 @@ async def object(callback: CallbackQuery):
     )
 
 
-
 @router.callback_query(F.data == 'go_main')
 async def on_main_button(callback_query: CallbackQuery):
-    await callback_query.message.edit_text('Вы вернулись на главную',
-                                           reply_markup=await kb.objects())
+    await callback_query.answer()
+    await callback_query.bot.send_message(text='Вы вернулись на главную',
+                                          chat_id=callback_query.from_user.id,
+                                          reply_markup=await kb.objects())
