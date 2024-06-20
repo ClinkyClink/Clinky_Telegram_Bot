@@ -38,7 +38,7 @@ async def object(callback: CallbackQuery):
         f'Станция: {item_data.category.name}\n'
         f'Руководство: {item_data.category.documentation}\n'
         f'Описание: {item_data.description}\n'
-        f'Ампераж: {str(item_data.amperage) + "A" if item_data.amperage != "-" else "Нет данных"}\n'
+        f'Номинальный ампераж: {str(item_data.amperage) + "A" if item_data.amperage != "-" else "Нет данных"}\n',
         # reply_markup=await kb.items(callback.data.split('_')[1])
     )
 
