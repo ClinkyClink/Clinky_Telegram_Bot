@@ -1,6 +1,6 @@
 from aiogram import Router, F
 from aiogram.filters import CommandStart
-from aiogram.types import Message, CallbackQuery
+from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup
 
 import app.keyboards as kb
 import app.database.requests as rq
@@ -33,6 +33,8 @@ async def object_list(callback: CallbackQuery):
 async def object(callback: CallbackQuery):
     item_data = await rq.get_item(callback.data.split('_')[1])
     await callback.answer('Вы выбрали скважину')
+    buttons_list = [[kb.main_button()]]
+    main_menu_keyboard = InlineKeyboardMarkup(inline_keyboard=buttons_list)
     await callback.message.answer(
         f'{item_data.number}\n'
         f'Станция: {item_data.category.name}\n'
@@ -40,7 +42,8 @@ async def object(callback: CallbackQuery):
         f'Описание: {item_data.description}\n'
         f'Номинальный ампераж: {str(item_data.amperage) + "A" if item_data.amperage != "-" else "Нет данных"}\n'
         f'Статус: {item_data.status}\n'
-        f'Текущий ампераж: {item_data.current_amperage}\n'
+        f'Текущий ампераж: {item_data.current_amperage}\n',
+        reply_markup=main_menu_keyboard
 )
 
 

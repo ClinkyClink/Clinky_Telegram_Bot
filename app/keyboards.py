@@ -1,5 +1,5 @@
 from aiogram.types import (ReplyKeyboardMarkup, KeyboardButton,
-                           InlineKeyboardButton)
+                           InlineKeyboardButton, InlineKeyboardMarkup)
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 from app.database.requests import get_objects, get_item_by_object
@@ -8,6 +8,10 @@ from app.database.requests import get_objects, get_item_by_object
 main = ReplyKeyboardMarkup(keyboard=[[KeyboardButton(text='Объекты')]],
                            resize_keyboard=True,
                            input_field_placeholder='Выберите пункт меню')
+
+
+def main_button():
+    return InlineKeyboardButton(text='На главную', callback_data='go_main')
 
 
 async def objects():
@@ -25,5 +29,5 @@ async def items(object_id):
     for item in all_items:
         keyboard.add(InlineKeyboardButton(text=item.number,
                                           callback_data=f'item_{item.id}'))
-    keyboard.add(InlineKeyboardButton(text='На главную', callback_data='go_main'))
+    keyboard.add(main_button())
     return keyboard.adjust(2).as_markup()
