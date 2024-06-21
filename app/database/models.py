@@ -50,6 +50,8 @@ class Item(Base):
     number: Mapped[str] = mapped_column(String(10))
     description: Mapped[str] = mapped_column(String(120))
     amperage: Mapped[int] = mapped_column()
+    current_amperage: Mapped[int] = mapped_column(server_default='-1')
+    status: Mapped[str] = mapped_column(String(30), default='No data', server_default='No data')
     category_id: Mapped[int] = mapped_column(ForeignKey('categories.id'))
     category = relationship("Category", back_populates="items")
     object_id: Mapped[int] = mapped_column(ForeignKey('objects.id'))
