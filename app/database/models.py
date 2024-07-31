@@ -32,7 +32,7 @@ class Category(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(25))
     documentation: Mapped[str] = mapped_column(String(255), server_default='No documentation')
-    items = relationship("Item", back_populates="category")
+    items = relationship('Item', back_populates='category')
 
 
 class Object(Base):
@@ -40,7 +40,7 @@ class Object(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(25))
-    items = relationship("Item", back_populates="object")
+    items = relationship('Item', back_populates='object')
 
 
 class Item(Base):
@@ -53,9 +53,9 @@ class Item(Base):
     current_amperage: Mapped[int] = mapped_column(server_default='-1')
     status: Mapped[str] = mapped_column(String(30), default='No data', server_default='No data')
     category_id: Mapped[int] = mapped_column(ForeignKey('categories.id'))
-    category = relationship("Category", back_populates="items")
+    category = relationship('Category', back_populates='items')
     object_id: Mapped[int] = mapped_column(ForeignKey('objects.id'))
-    object = relationship("Object", back_populates="items")
+    object = relationship('Object', back_populates='items')
 
 
 async def async_main():

@@ -4,7 +4,7 @@ from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup
 
 import app.keyboards as kb
 import app.database.requests as rq
-
+from app.utils import get_object_name
 
 router = Router()
 
@@ -23,8 +23,10 @@ async def list_object(message: Message):
 
 @router.callback_query(F.data.startswith('object_'))
 async def object_list(callback: CallbackQuery):
+    object_id = callback.data.split('_')[1]
+    object_name = await get_object_name(object_id)
     await callback.answer('Вы выбрали объект')
-    await callback.message.answer('Выберите скважину на объекте',
+    await callback.message.answer(f'Выберите скважину на объекте {object_name}',
                                   reply_markup=await kb.items(
                                       callback.data.split('_')[1]))
 
