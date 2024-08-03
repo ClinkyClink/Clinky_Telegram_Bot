@@ -1,5 +1,4 @@
-from app.database.models import async_session
-from app.database.models import Object
+from app.database.models import Object, async_session
 
 from sqlalchemy import select
 

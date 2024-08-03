@@ -1,5 +1,4 @@
-from app.database.models import async_session
-from app.database.models import User, Item, Object
+from app.database.models import User, Item, Object, async_session
 
 from sqlalchemy import select
 from sqlalchemy.orm import joinedload
