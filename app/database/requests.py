@@ -1,6 +1,6 @@
 from app.database.models import User, Item, Object, async_session
 
-from sqlalchemy import select
+from sqlalchemy import select, update
 from sqlalchemy.orm import joinedload
 
 
@@ -33,3 +33,12 @@ async def get_item(item_id):
             )
         )
         return result.scalars().first()
+
+
+async def update_field(item_id, field, new_value):
+    async with async_session() as session:
+        await session.execute(
+            update(Item).where(Item.id == item_id)
+            .values({field: new_value})
+        )
+        await session.commit()
