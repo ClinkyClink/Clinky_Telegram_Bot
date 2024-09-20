@@ -87,9 +87,12 @@ async def edit_field(callback: CallbackQuery, state: FSMContext):
             field_name = 'current_amperage'
     else:
         print(f'Ошибка: {data[3]} не является числом')
-    await state.update_data(field_name=field_name)
+    item_data = await rq.get_item(item_id)
+    current_value = getattr(item_data, field_name, 'Нет данных')
+    await state.update_data(field_name=field_name, item_id=item_id)
     await callback.message.edit_text(
-        f'Введите новое значение для {fields[field_name]}:', 
+        f'Введите новое значение для {fields[field_name]}\n'
+        f'Текущее значение: {current_value}',
         reply_markup=None
     )
     await callback.answer()
