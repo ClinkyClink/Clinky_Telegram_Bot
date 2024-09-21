@@ -22,9 +22,9 @@ fields = {
     'category': 'Категория',
     'documentation': 'Документация',
     'description': 'Описание',
-    'amperage': 'Ампераж',
+    'amperage': 'Номинальный Ампераж',
     'status': 'Статус',
-    'current_amperage': 'Текущий ампераж',
+    'current_amperage': 'Текущий Ампераж',
 }
 
 @router.message(CommandStart())

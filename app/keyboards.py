@@ -41,11 +41,11 @@ def edit_item_keyboard(item_id):
     )
     keyboard.row(
         InlineKeyboardButton(text='Описание', callback_data=f'edit_field_description_{item_id}'),
-        InlineKeyboardButton(text='Ампераж', callback_data=f'edit_field_amperage_{item_id}')
+        InlineKeyboardButton(text='Номинальный Ампераж', callback_data=f'edit_field_amperage_{item_id}')
     )
     keyboard.row(
         InlineKeyboardButton(text='Статус', callback_data=f'edit_field_status_{item_id}'),
-        InlineKeyboardButton(text='Текущий ампераж', callback_data=f'edit_field_current_amperage_{item_id}')
+        InlineKeyboardButton(text='Текущий Ампераж', callback_data=f'edit_field_current_amperage_{item_id}')
     )
     keyboard.row(
         InlineKeyboardButton(text='Отмена', callback_data=f'cancel_{item_id}')
